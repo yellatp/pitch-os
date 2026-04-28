@@ -1,0 +1,15 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro'
+import KeyManager from '@/components/KeyManager'
+---
+<AppLayout title="API Keys">
+  <div class="mb-6">
+    <h2 class="text-primary text-lg font-sans mb-1">API Key Manager</h2>
+    <p class="text-secondary text-sm">
+      Plug in your own keys for each service layer. All keys are encrypted with AES-256-GCM
+      and stored per-user. Pitch OS never logs or transmits your keys.
+    </p>
+  </div>
+
+  <KeyManager client:load />
+</AppLayout>

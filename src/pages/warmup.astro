@@ -1,0 +1,14 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro'
+import WarmupTracker from '@/components/WarmupTracker'
+---
+<AppLayout title="Warmup">
+  <div class="mb-6">
+    <h2 class="text-primary text-lg font-sans mb-1">Email Warmup</h2>
+    <p class="text-secondary text-sm">
+      Track your domain's warmup progress. Sending from a cold domain gets you flagged instantly.
+      30 days of warmup = a trusted sender identity.
+    </p>
+  </div>
+  <WarmupTracker client:load />
+</AppLayout>

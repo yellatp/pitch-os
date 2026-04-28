@@ -1,0 +1,42 @@
+{
+  "name": "pitch-os",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "wrangler pages dev dist",
+    "deploy": "astro build && wrangler pages deploy dist",
+    "cf:d1:create": "wrangler d1 create pitch-os-dev",
+    "cf:kv:create": "wrangler kv namespace create KEYS_KV",
+    "db:migrate:local": "wrangler d1 execute pitch-os-dev --local --file=./migrations/0001_init.sql && wrangler d1 execute pitch-os-dev --local --file=./migrations/0002_full_schema.sql",
+    "db:migrate:prod": "wrangler d1 execute pitch-os-dev --file=./migrations/0001_init.sql",
+    "type-check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/cloudflare": "^13.2.1",
+    "@astrojs/react": "^5.0.4",
+    "@astrojs/tailwind": "^6.0.2",
+    "@auth/core": "^0.34.3",
+    "@nanostores/react": "^1.1.0",
+    "astro": "^6.1.9",
+    "clsx": "^2.1.1",
+    "nanoid": "^5.1.9",
+    "nanostores": "^1.3.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "tailwindcss": "^4.2.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260426.1",
+    "@tailwindcss/postcss": "^4.2.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.85.0"
+  }
+}

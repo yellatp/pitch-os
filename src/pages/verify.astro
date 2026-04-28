@@ -1,0 +1,13 @@
+--- 
+ import AppLayout from '@/layouts/AppLayout.astro' 
+ import VerificationPanel from '@/components/VerificationPanel' 
+ --- 
+ <AppLayout title="Verify"> 
+   <div class="mb-6"> 
+     <h2 class="text-primary text-lg font-sans mb-1">Email Verification</h2> 
+     <p class="text-secondary text-sm"> 
+       Live verification via your connected APIs. Community DB checked first — no API cost if recently verified. 
+     </p> 
+   </div> 
+   <VerificationPanel client:load /> 
+ </AppLayout>

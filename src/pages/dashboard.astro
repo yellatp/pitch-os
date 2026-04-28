@@ -1,0 +1,15 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro'
+import DashboardWidgets from '@/components/DashboardWidgets'
+
+const user = Astro.locals.user
+---
+<AppLayout title="Dashboard">
+  <div class="max-w-5xl">
+    <p class="text-secondary font-mono text-xs mb-6">
+      Welcome back, {user?.name}. Your workspace is ready.
+    </p>
+
+    <DashboardWidgets client:load />
+  </div>
+</AppLayout>

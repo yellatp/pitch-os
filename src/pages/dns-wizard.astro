@@ -1,0 +1,13 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro'
+import DnsWizardComponent from '@/components/DnsWizard'
+---
+<AppLayout title="DNS Wizard">
+  <div class="mb-6">
+    <h2 class="text-primary text-lg font-sans mb-1">DNS Setup Wizard</h2>
+    <p class="text-secondary text-sm">
+      Step-by-step SPF, DKIM, and DMARC setup for your sender domain. Live DNS verification included.
+    </p>
+  </div>
+  <DnsWizardComponent client:load />
+</AppLayout>

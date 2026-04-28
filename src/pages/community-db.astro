@@ -1,0 +1,13 @@
+--- 
+ import AppLayout from '@/layouts/AppLayout.astro' 
+ import CommunityDBTable from '@/components/CommunityDBTable' 
+ --- 
+ <AppLayout title="Community DB"> 
+   <div class="mb-6"> 
+     <h2 class="text-primary text-lg font-sans mb-1">Community Database</h2> 
+     <p class="text-secondary text-sm"> 
+       Verified emails contributed by Pitch OS users. Contribute to earn credits. Spend credits to reveal full emails.
+     </p> 
+   </div> 
+   <CommunityDBTable client:load /> 
+ </AppLayout>

@@ -1,0 +1,14 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro'
+import DiscoveryPanel from '@/components/DiscoveryPanel'
+---
+
+<AppLayout title="Discover">
+  <div class="mb-6">
+    <h2 class="text-primary text-lg font-sans mb-1">Email Discovery</h2>
+    <p class="text-secondary text-sm">
+      Waterfall search across all your connected finder APIs. Stops when confidence is high.
+    </p>
+  </div>
+  <DiscoveryPanel client:load />
+</AppLayout>

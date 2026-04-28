@@ -1,0 +1,14 @@
+--- 
+ import AppLayout from '@/layouts/AppLayout.astro' 
+ import TemplateList from '@/components/TemplateList' 
+  
+ --- 
+ <AppLayout title="Compose"> 
+   <div class="mb-6"> 
+     <h2 class="text-primary text-lg font-sans mb-1">Template Library</h2> 
+     <p class="text-secondary text-sm"> 
+       Write templates with spintax variations. Every send gets a unique fingerprint. 
+     </p> 
+   </div> 
+   <TemplateList client:load /> 
+ </AppLayout>
