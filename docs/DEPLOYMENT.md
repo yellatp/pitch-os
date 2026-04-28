@@ -19,7 +19,7 @@ pnpm cf:d1:create
 
 This outputs:
 ```
-✅ Successfully created DB 'pitch-os-dev' in region ...
+Successfully created DB 'pitch-os-dev' in region ...
 Created your new D1 database.
 [[d1_databases]]
 binding = "DB"
@@ -37,7 +37,7 @@ pnpm cf:kv:create
 
 This outputs:
 ```
-✅ Successfully created KV namespace "KEYS_KV"
+Successfully created KV namespace "KEYS_KV"
 [[kv_namespaces]]
 binding = "KEYS_KV"
 id = "<your-kv-id>"
@@ -61,8 +61,8 @@ pnpm db:migrate:prod
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project (or select existing)
-3. Navigate to **APIs & Services → Credentials**
-4. Click **Create Credentials → OAuth 2.0 Client ID**
+3. Navigate to **APIs & Services -> Credentials**
+4. Click **Create Credentials -> OAuth 2.0 Client ID**
 5. Application type: **Web application**
 6. Authorized JavaScript origins: `http://localhost:4321` (dev), `https://your-domain.com` (prod)
 7. Authorized redirect URIs: `http://localhost:4321/api/auth/callback` (dev), `https://your-domain.com/api/auth/callback` (prod)
@@ -122,7 +122,7 @@ This runs `astro build` then `wrangler pages deploy dist`.
 
 The send queue processor runs via Cloudflare Cron Triggers. In your Cloudflare Dashboard:
 
-1. Go to **Workers & Pages → pitch-os → Settings**
+1. Go to **Workers & Pages -> pitch-os -> Settings**
 2. Find **Triggers** section
 3. Add a Cron Trigger: `*/1 * * * *` (every minute)
 

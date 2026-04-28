@@ -65,7 +65,7 @@ KV Value: base64(iv + ciphertext)
 2. Server creates JWT with user info + expiry
 3. JWT stored in HttpOnly cookie
 4. Every request verifies JWT signature + expiry
-5. Expired/invalid tokens → redirect to /login
+5. Expired/invalid tokens -> redirect to /login
 ```
 
 ---
@@ -76,10 +76,10 @@ KV Value: base64(iv + ciphertext)
 
 | Limit | Value | Enforcement |
 |-------|-------|-------------|
-| Daily send cap | 20 (week 1) → 50 (week 2) → 200 (30+ days) | Server-side |
+| Daily send cap | 20 (week 1) -> 50 (week 2) -> 200 (30+ days) | Server-side |
 | Per-domain per day | 3 | Server-side |
 | Duplicate recipient | 30-day window | Server-side |
-| Send delay | 90–180 seconds random | Server-side |
+| Send delay | 90-180 seconds random | Server-side |
 | Bounce rate | 3% auto-pause | Server-side |
 
 ### Why Server-Side?
@@ -126,11 +126,11 @@ All rate limits are enforced in the **Cloudflare Worker**, not the client. This 
 
 ## Best Practices for Users
 
-1. **Use burner domains** for outreach — never use your primary domain
+1. **Use burner domains** for outreach -- never use your primary domain
 2. **Rotate API keys** periodically in the Key Manager
-3. **Monitor bounce rates** — the auto-pause protects your sender reputation
+3. **Monitor bounce rates** -- the auto-pause protects your sender reputation
 4. **Contribute verified emails** to build community credits before you need them
-5. **Keep AUTH_SECRET secure** — it's the master key for all encrypted data
+5. **Keep AUTH_SECRET secure** -- it's the master key for all encrypted data
 
 ---
 

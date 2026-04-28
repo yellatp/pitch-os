@@ -7,41 +7,41 @@ Pitch OS is a server-side rendered web application built on **Astro 6** with **R
 ## System Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                     Client Browser                          │
-│  Astro SSR pages (.astro) + React components (.tsx)         │
-└──────────────────────────┬──────────────────────────────────┘
-                           │ HTTP
-┌──────────────────────────▼──────────────────────────────────┐
-│                  Cloudflare Pages (Workers)                  │
-│                                                             │
-│  ┌──────────────────────────────────────────────────────┐   │
-│  │              Astro Runtime (SSR)                      │   │
-│  │                                                       │   │
-│  │  ┌──────────────┐   ┌──────────────────────────┐     │   │
-│  │  │  Middleware   │   │  Page Routes (.astro)    │     │   │
-│  │  │  (auth guard) │──▶│  API Routes (.ts)        │     │   │
-│  │  └──────────────┘   └──────────┬───────────────┘     │   │
-│  └──────────────────────────────────┼────────────────────┘   │
-│                                     │                         │
-│  ┌──────────────────────────────────┼────────────────────┐   │
-│  │              Scheduled Worker    │                    │   │
-│  │  (Cron: every 60s)              │                    │   │
-│  │  ┌──────────────────────────┐   │                    │   │
-│  │  │  processSendQueue()      │──▶│  Internal HTTP     │   │
-│  │  │  - Fetch queued emails   │   │  to /api/send/     │   │
-│  │  │  - Rate limit check      │   │  dispatch          │   │
-│  │  │  - Dispatch via internal │   │                    │   │
-│  │  │    API call              │   │                    │   │
-│  │  └──────────────────────────┘   │                    │   │
-│  └──────────────────────────────────────────────────────┘   │
-│                                                             │
-│  ┌──────────────┐  ┌──────────────────┐  ┌──────────────┐  │
-│  │  D1 Database  │  │  KV Namespace    │  │  Cloudflare  │  │
-│  │  (SQLite)     │  │  (Encrypted Keys)│  │  DNS-over-   │  │
-│  │               │  │                  │  │  HTTPS       │  │
-│  └──────────────┘  └──────────────────┘  └──────────────┘  │
-└─────────────────────────────────────────────────────────────┘
++---------------------------------------------------------------+
+|                     Client Browser                             |
+|  Astro SSR pages (.astro) + React components (.tsx)            |
++----------------------------+----------------------------------+
+                            | HTTP
++----------------------------v----------------------------------+
+|                  Cloudflare Pages (Workers)                    |
+|                                                               |
+|  +--------------------------------------------------------+   |
+|  |              Astro Runtime (SSR)                        |   |
+|  |                                                         |   |
+|  |  +----------------+   +----------------------------+    |   |
+|  |  |  Middleware     |   |  Page Routes (.astro)      |    |   |
+|  |  |  (auth guard)   |-->|  API Routes (.ts)          |    |   |
+|  |  +----------------+   +------------+---------------+    |   |
+|  +--------------------------------------+------------------+   |
+|                                         |                       |
+|  +--------------------------------------+------------------+   |
+|  |              Scheduled Worker        |                  |   |
+|  |  (Cron: every 60s)                   |                  |   |
+|  |  +----------------------------+      |                  |   |
+|  |  |  processSendQueue()        |----->|  Internal HTTP   |   |
+|  |  |  - Fetch queued emails     |      |  to /api/send/   |   |
+|  |  |  - Rate limit check        |      |  dispatch        |   |
+|  |  |  - Dispatch via internal   |      |                  |   |
+|  |  |    API call                |      |                  |   |
+|  |  +----------------------------+      |                  |   |
+|  +--------------------------------------------------------+   |
+|                                                               |
+|  +----------------+  +--------------------+  +----------------+ |
+|  |  D1 Database    |  |  KV Namespace      |  |  Cloudflare    | |
+|  |  (SQLite)       |  |  (Encrypted Keys)  |  |  DNS-over-     | |
+|  |                 |  |                    |  |  HTTPS         | |
+|  +----------------+  +--------------------+  +----------------+ |
++---------------------------------------------------------------+
 ```
 
 ## Data Flow
@@ -49,7 +49,7 @@ Pitch OS is a server-side rendered web application built on **Astro 6** with **R
 ### Request Lifecycle
 
 1. **HTTP Request** arrives at Cloudflare Pages
-2. **Middleware** (`src/middleware.ts`) runs first:
+2. **Middleware** ([`src/middleware.ts`](../src/middleware.ts)) runs first:
    - Extracts session cookie
    - Verifies JWT token via `verifySessionToken()`
    - Attaches `locals.user` if valid
@@ -63,25 +63,25 @@ Pitch OS is a server-side rendered web application built on **Astro 6** with **R
 ### Authentication Flow
 
 ```
-User → /login → Google OAuth → /api/auth/callback
-  → exchangeGoogleCode() → fetchGoogleUser()
-  → findOrCreateUser() → createSessionToken()
-  → Set-Cookie: pitch_os_session (HttpOnly, 7-day expiry)
-  → Redirect to /dashboard
+User -> /login -> Google OAuth -> /api/auth/callback
+  -> exchangeGoogleCode() -> fetchGoogleUser()
+  -> findOrCreateUser() -> createSessionToken()
+  -> Set-Cookie: pitch_os_session (HttpOnly, 7-day expiry)
+  -> Redirect to /dashboard
 ```
 
 ### Send Queue Flow
 
 ```
-1. User creates campaign → recipients queued in outreach_log (status='queued')
-2. Cron worker (every 60s) → processSendQueue()
+1. User creates campaign -> recipients queued in outreach_log (status='queued')
+2. Cron worker (every 60s) -> processSendQueue()
 3. For each running campaign with queued recipients:
    a. Pick next queued recipient
-   b. checkRateLimit() — daily limit, duplicate, domain frequency, bounce rate
-   c. If allowed → POST /api/send/dispatch (internal)
-   d. Dispatcher selects best provider → sends via provider API
-   e. Random delay 90–180s before next send
-4. If bounce rate > 3% → campaign auto-paused
+   b. checkRateLimit() -- daily limit, duplicate, domain frequency, bounce rate
+   c. If allowed -> POST /api/send/dispatch (internal)
+   d. Dispatcher selects best provider -> sends via provider API
+   e. Random delay 90-180s before next send
+4. If bounce rate > 3% -> campaign auto-paused
 ```
 
 ## Key Design Decisions
@@ -104,20 +104,20 @@ API keys are encrypted with **AES-256-GCM** before storage:
 
 ### Why D1 (SQLite) over Postgres?
 
-- Zero-config — no server to provision
+- Zero-config -- no server to provision
 - Free tier is generous (5GB storage, 1M writes/month)
 - SQLite compatibility means standard SQL queries
-- Integrated with Cloudflare Workers — no network latency
+- Integrated with Cloudflare Workers -- no network latency
 
 ## Database Schema
 
 See [`migrations/0002_full_schema.sql`](../migrations/0002_full_schema.sql) for the complete schema.
 
 Key tables:
-- **users** — Google OAuth accounts, credits, send limits
-- **templates** — Spintax email templates with categories
-- **campaigns** — Campaigns with status tracking
-- **outreach_log** — Individual email send records
-- **community_emails** — Crowd-sourced verified emails (masked)
-- **warmup_config** — Per-user warmup configuration
-- **dns_checks** — Cached DNS verification results
+- **users** -- Google OAuth accounts, credits, send limits
+- **templates** -- Spintax email templates with categories
+- **campaigns** -- Campaigns with status tracking
+- **outreach_log** -- Individual email send records
+- **community_emails** -- Crowd-sourced verified emails (masked)
+- **warmup_config** -- Per-user warmup configuration
+- **dns_checks** -- Cached DNS verification results

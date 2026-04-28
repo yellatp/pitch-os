@@ -1,95 +1,95 @@
 # Pitch OS
 
-> **BYOK (Bring Your Own Key) · Community-driven · MIT Licensed**
+> **BYOK (Bring Your Own Key) - Community-driven - MIT Licensed**
 
-Pitch OS is an open-source, all-in-one outreach platform for **job seekers** and **startup founders**. It combines email finding, verification, sending, warmup, and DNS setup into a single self-hosted application — running entirely on Cloudflare's free tier.
+Pitch OS is an open-source, all-in-one outreach platform for **job seekers** and **startup founders**. It combines email finding, verification, sending, warmup, and DNS setup into a single self-hosted application -- running entirely on Cloudflare's free tier.
 
-Drop this repo into Cursor, Windsurf, or Claude Code and tell it to `"implement Phase 1"` — the phased build order is designed so AI IDEs can work in focused chunks without getting lost.
-
----
-
-## ✨ Features
-
-### 🔍 Email Discovery
-- **Waterfall finder engine** — queries Apollo, RocketReach, Hunter, Skrapp, Prospeo, GetProspect, ContactOut, Wiza, SignalHire, AeroLeads in cascade until an email is found
-- **Single lookup** — find one email by name + company
-- **Bulk lookup** — upload CSV, find up to 50 emails at once
-- **Domain search** — Hunter-powered domain-wide email discovery
-- **Pattern fallback** — generates email patterns from known formats when APIs fail
-
-### ✅ Email Verification
-- **Waterfall verifier** — checks across ZeroBounce, NeverBounce, MillionVerifier, DeBounce until a result is returned
-- **Status classification** — valid, invalid, catch-all, unknown, spamtrap, abuse
-- **Confidence scoring** — 0–10 score with `safe_to_send` flag
-- **Community contribution** — verified emails can be contributed to the shared database
-
-### 📧 Email Sending
-- **Multi-provider dispatch** — Resend, Brevo, MailerSend, Postmark, Mailgun
-- **Smart routing** — picks the best provider based on availability and rate limits
-- **Rate limiting** — daily caps, domain frequency limits (max 3/day per domain), 90–180s random send delays
-- **Bounce rate auto-pause** — any campaign hitting 3% bounce rate is hard-paused automatically
-- **Queue-based delivery** — Cloudflare Cron-driven send queue processes emails every 60 seconds
-
-### 📝 Template Engine
-- **Spintax support** — `{option1|option2|option3}` randomization for subject and body
-- **Variable substitution** — `{{FirstName}}`, `{{Company}}`, etc.
-- **AI personalization** — optional AI-powered postscript generation
-- **10 template categories** — job_search, referral_request, mentorship_request, investor_pitch, partnership, product_demo, one_pager_share, recruiter_reach, community_invite, custom
-- **Starter templates** — 15+ pre-written templates included
-
-### 🌡️ Email Warmup
-- **Ramp schedule** — Days 1–3 (5/day) → 4–7 (10/day) → 8–14 (20/day) → 15–21 (40/day) → 22–30 (70/day) → 30+ (100/day)
-- **Readiness score** — computed as `min(100, daysActive / 30 * 100)`
-- **Provider selection** — Mails.ai, TrulyInbox, Instantly, Smartlead
-- **Visual progress** — ramp schedule visualization with current stage highlighting
-
-### ⚡ DNS Wizard
-- **6-step guided setup** — Domain → Provider → SPF → DKIM → DMARC → Verify
-- **Provider-specific instructions** — Resend, Brevo, MailerSend, Mailgun, Postmark
-- **Live DNS verification** — checks SPF, DKIM (9 selectors), DMARC via Cloudflare DNS-over-HTTPS
-- **Burner domain warning** — reminds users to never use their main domain
-
-### 👥 Community Database
-- **Shared email repository** — crowd-sourced verified emails
-- **Credit system** — earn credits by contributing, spend credits to reveal full emails
-- **Role-based filtering** — filter by HR, engineering, founder, sales, marketing, etc.
-- **Email masking** — emails are masked (`j***@company.com`) until revealed
-
-### 🔐 Security
-- **Google OAuth** — sign in with your Google account
-- **JWT sessions** — HMAC-SHA256 signed tokens, 7-day expiry
-- **AES-256-GCM encryption** — API keys encrypted at rest in KV, derived from AUTH_SECRET + userId
-- **Encrypted API keys** — keys are never stored in plaintext
+Drop this repo into Cursor, Windsurf, or Claude Code and tell it to "implement Phase 1" -- the phased build order is designed so AI IDEs can work in focused chunks without getting lost.
 
 ---
 
-## 🏗️ Architecture
+## Features
+
+### Email Discovery
+- **Waterfall finder engine** -- queries Apollo, RocketReach, Hunter, Skrapp, Prospeo, GetProspect, ContactOut, Wiza, SignalHire, AeroLeads in cascade until an email is found
+- **Single lookup** -- find one email by name + company
+- **Bulk lookup** -- upload CSV, find up to 50 emails at once
+- **Domain search** -- Hunter-powered domain-wide email discovery
+- **Pattern fallback** -- generates email patterns from known formats when APIs fail
+
+### Email Verification
+- **Waterfall verifier** -- checks across ZeroBounce, NeverBounce, MillionVerifier, DeBounce until a result is returned
+- **Status classification** -- valid, invalid, catch-all, unknown, spamtrap, abuse
+- **Confidence scoring** -- 0-10 score with `safe_to_send` flag
+- **Community contribution** -- verified emails can be contributed to the shared database
+
+### Email Sending
+- **Multi-provider dispatch** -- Resend, Brevo, MailerSend, Postmark, Mailgun
+- **Smart routing** -- picks the best provider based on availability and rate limits
+- **Rate limiting** -- daily caps, domain frequency limits (max 3/day per domain), 90-180s random send delays
+- **Bounce rate auto-pause** -- any campaign hitting 3% bounce rate is hard-paused automatically
+- **Queue-based delivery** -- Cloudflare Cron-driven send queue processes emails every 60 seconds
+
+### Template Engine
+- **Spintax support** -- `{option1|option2|option3}` randomization for subject and body
+- **Variable substitution** -- `{{FirstName}}`, `{{Company}}`, etc.
+- **AI personalization** -- optional AI-powered postscript generation
+- **10 template categories** -- job_search, referral_request, mentorship_request, investor_pitch, partnership, product_demo, one_pager_share, recruiter_reach, community_invite, custom
+- **Starter templates** -- 15+ pre-written templates included
+
+### Email Warmup
+- **Ramp schedule** -- Days 1-3 (5/day) -> 4-7 (10/day) -> 8-14 (20/day) -> 15-21 (40/day) -> 22-30 (70/day) -> 30+ (100/day)
+- **Readiness score** -- computed as `min(100, daysActive / 30 * 100)`
+- **Provider selection** -- Mails.ai, TrulyInbox, Instantly, Smartlead
+- **Visual progress** -- ramp schedule visualization with current stage highlighting
+
+### DNS Wizard
+- **6-step guided setup** -- Domain -> Provider -> SPF -> DKIM -> DMARC -> Verify
+- **Provider-specific instructions** -- Resend, Brevo, MailerSend, Mailgun, Postmark
+- **Live DNS verification** -- checks SPF, DKIM (9 selectors), DMARC via Cloudflare DNS-over-HTTPS
+- **Burner domain warning** -- reminds users to never use their main domain
+
+### Community Database
+- **Shared email repository** -- crowd-sourced verified emails
+- **Credit system** -- earn credits by contributing, spend credits to reveal full emails
+- **Role-based filtering** -- filter by HR, engineering, founder, sales, marketing, etc.
+- **Email masking** -- emails are masked (`j***@company.com`) until revealed
+
+### Security
+- **Google OAuth** -- sign in with your Google account
+- **JWT sessions** -- HMAC-SHA256 signed tokens, 7-day expiry
+- **AES-256-GCM encryption** -- API keys encrypted at rest in KV, derived from AUTH_SECRET + userId
+- **Encrypted API keys** -- keys are never stored in plaintext
+
+---
+
+## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    Cloudflare Pages                     │
-│  ┌──────────────────────────────────────────────────┐   │
-│  │              Astro (SSR + React)                 │   │
-│  │  ┌──────────┐ ┌──────────┐ ┌──────────────────┐  │   │
-│  │  │  Pages   │ │  API     │ │  Components      │  │   │
-│  │  │  .astro  │ │  .ts     │ │  .tsx (React)    │  │   │
-│  │  └──────────┘ └──────────┘ └──────────────────┘  │   │
-│  └──────────────────────────────────────────────────┘   │
-│                          │                              │
-│  ┌──────────────────────────────────────────────────┐   │
-│  │              Cloudflare Workers                  │   │
-│  │  ┌──────────────┐  ┌──────────────────────────┐  │   │
-│  │  │ Middleware   │  │  Scheduled (Cron)        │  │   |
-│  │  │ Auth/Session │  │  Send Queue Processor    │  │   │
-│  │  └──────────────┘  └──────────────────────────┘  │   │
-│  └──────────────────────────────────────────────────┘   │
-│                          │                              │
-│  ┌──────────┐  ┌──────────────────┐  ┌──────────────┐   │
-│  │  D1 DB   │  │  KV Namespace    │  │  Cloudflare  │   │
-│  │  (SQL)   │  │  (Encrypted Keys)│  │  DNS-over-   │   │
-│  │          │  │                  │  │  HTTPS       │   │
-│  └──────────┘  └──────────────────┘  └──────────────┘   │
-└─────────────────────────────────────────────────────────┘
++-----------------------------------------------------------+
+|                    Cloudflare Pages                        |
+|  +------------------------------------------------------+ |
+|  |              Astro (SSR + React)                      | |
+|  |  +----------+ +----------+ +----------------------+   | |
+|  |  |  Pages   | |  API     | |  Components          |   | |
+|  |  |  .astro  | |  .ts     | |  .tsx (React)        |   | |
+|  |  +----------+ +----------+ +----------------------+   | |
+|  +------------------------------------------------------+ |
+|                          |                                |
+|  +------------------------------------------------------+ |
+|  |              Cloudflare Workers                       | |
+|  |  +------------------+  +--------------------------+   | |
+|  |  | Middleware       |  |  Scheduled (Cron)        |   | |
+|  |  | Auth/Session     |  |  Send Queue Processor    |   | |
+|  |  +------------------+  +--------------------------+   | |
+|  +------------------------------------------------------+ |
+|                          |                                |
+|  +------------+  +------------------+  +----------------+  |
+|  |  D1 DB     |  |  KV Namespace    |  |  Cloudflare    |  |
+|  |  (SQL)     |  |  (Encrypted Keys)|  |  DNS-over-     |  |
+|  |            |  |                  |  |  HTTPS         |  |
+|  +------------+  +------------------+  +----------------+  |
++-----------------------------------------------------------+
 ```
 
 ### Tech Stack
@@ -107,7 +107,7 @@ Drop this repo into Cursor, Windsurf, or Claude Code and tell it to `"implement 
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -162,7 +162,7 @@ pnpm db:migrate:local
 pnpm dev
 ```
 
-Open [http://localhost:4321](http://localhost:4321) — sign in with Google.
+Open [http://localhost:4321](http://localhost:4321) -- sign in with Google.
 
 ### 5. Deploy
 
@@ -172,75 +172,75 @@ pnpm deploy
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
-├── components/          # React components
-│   ├── ui/              # Base UI primitives (Button, Card, Input, Badge, Spinner)
-│   ├── CampaignTable.tsx
-│   ├── CommunityDBTable.tsx
-│   ├── DashboardWidgets.tsx
-│   ├── DiscoveryPanel.tsx
-│   ├── DnsWizard.tsx
-│   ├── KeyManager.tsx
-│   ├── SpintaxEditor.tsx
-│   ├── TemplateEditor.tsx
-│   ├── TemplateList.tsx
-│   ├── VerificationPanel.tsx
-│   └── WarmupTracker.tsx
-├── layouts/             # Astro layouts
-│   ├── AppLayout.astro  # Authenticated app shell (sidebar + nav)
-│   ├── AuthLayout.astro # Auth pages (login)
-│   └── BaseLayout.astro # Root HTML shell
-├── lib/                 # Core libraries
-│   ├── auth.ts          # JWT, OAuth, session management
-│   ├── csv.ts           # CSV parser/serializer
-│   ├── db.ts            # D1 query helpers (dbGet, dbAll, dbRun)
-│   ├── encryption.ts    # AES-256-GCM key encryption
-│   ├── ratelimiter.ts   # Rate limiting, bounce detection, send delays
-│   ├── spintax.ts       # Spintax resolver + variable substitution
-│   ├── starterTemplates.ts  # 15+ pre-written templates
-│   ├── verifier.ts      # Waterfall email verification
-│   └── waterfall.ts     # Waterfall email finding engine
-├── pages/               # Astro pages + API routes
-│   ├── api/
-│   │   ├── ai/personalize.ts
-│   │   ├── auth/        # Google OAuth callback, login, logout
-│   │   ├── campaigns/   # CRUD + control (pause/resume/delete)
-│   │   ├── community/   # Contribute, query, reveal
-│   │   ├── dashboard/stats.ts
-│   │   ├── discover/    # Single, bulk, domain search
-│   │   ├── dns/         # Check (cached), verify (live)
-│   │   ├── keys/        # Save, list, test API keys
-│   │   ├── send/        # Dispatch, queue
-│   │   ├── templates/   # CRUD + seed
-│   │   ├── verify/check.ts
-│   │   └── warmup/      # Config, status
-│   ├── campaigns.astro
-│   ├── community-db.astro
-│   ├── compose.astro
-│   ├── dashboard.astro
-│   ├── discover.astro
-│   ├── dns-wizard.astro
-│   ├── index.astro
-│   ├── keys.astro
-│   ├── login.astro
-│   ├── verify.astro
-│   └── warmup.astro
-├── stores/user.ts       # NanoStore for user state
-├── styles/global.css    # Tailwind + CSS variables
-├── middleware.ts         # Auth guard + session verification
-├── scheduled.ts         # Cloudflare Cron send queue processor
-└── env.d.ts             # TypeScript declarations
++-- components/          # React components
+|   +-- ui/              # Base UI primitives (Button, Card, Input, Badge, Spinner)
+|   +-- CampaignTable.tsx
+|   +-- CommunityDBTable.tsx
+|   +-- DashboardWidgets.tsx
+|   +-- DiscoveryPanel.tsx
+|   +-- DnsWizard.tsx
+|   +-- KeyManager.tsx
+|   +-- SpintaxEditor.tsx
+|   +-- TemplateEditor.tsx
+|   +-- TemplateList.tsx
+|   +-- VerificationPanel.tsx
+|   +-- WarmupTracker.tsx
++-- layouts/             # Astro layouts
+|   +-- AppLayout.astro  # Authenticated app shell (sidebar + nav)
+|   +-- AuthLayout.astro # Auth pages (login)
+|   +-- BaseLayout.astro # Root HTML shell
++-- lib/                 # Core libraries
+|   +-- auth.ts          # JWT, OAuth, session management
+|   +-- csv.ts           # CSV parser/serializer
+|   +-- db.ts            # D1 query helpers (dbGet, dbAll, dbRun)
+|   +-- encryption.ts    # AES-256-GCM key encryption
+|   +-- ratelimiter.ts   # Rate limiting, bounce detection, send delays
+|   +-- spintax.ts       # Spintax resolver + variable substitution
+|   +-- starterTemplates.ts  # 15+ pre-written templates
+|   +-- verifier.ts      # Waterfall email verification
+|   +-- waterfall.ts     # Waterfall email finding engine
++-- pages/               # Astro pages + API routes
+|   +-- api/
+|   |   +-- ai/personalize.ts
+|   |   +-- auth/        # Google OAuth callback, login, logout
+|   |   +-- campaigns/   # CRUD + control (pause/resume/delete)
+|   |   +-- community/   # Contribute, query, reveal
+|   |   +-- dashboard/stats.ts
+|   |   +-- discover/    # Single, bulk, domain search
+|   |   +-- dns/         # Check (cached), verify (live)
+|   |   +-- keys/        # Save, list, test API keys
+|   |   +-- send/        # Dispatch, queue
+|   |   +-- templates/   # CRUD + seed
+|   |   +-- verify/check.ts
+|   |   +-- warmup/      # Config, status
+|   +-- campaigns.astro
+|   +-- community-db.astro
+|   +-- compose.astro
+|   +-- dashboard.astro
+|   +-- discover.astro
+|   +-- dns-wizard.astro
+|   +-- index.astro
+|   +-- keys.astro
+|   +-- login.astro
+|   +-- verify.astro
+|   +-- warmup.astro
++-- stores/user.ts       # NanoStore for user state
++-- styles/global.css    # Tailwind + CSS variables
++-- middleware.ts         # Auth guard + session verification
++-- scheduled.ts         # Cloudflare Cron send queue processor
++-- env.d.ts             # TypeScript declarations
 migrations/
-├── 0001_init.sql        # Users + sessions tables
-└── 0002_full_schema.sql # Templates, campaigns, outreach_log, community_emails, warmup_config, dns_checks
++-- 0001_init.sql        # Users + sessions tables
++-- 0002_full_schema.sql # Templates, campaigns, outreach_log, community_emails, warmup_config, dns_checks
 ```
 
 ---
 
-## 🔌 Adapter Interface
+## Adapter Interface
 
 Pitch OS uses a **waterfall pattern** for both email finding and verification. Each provider implements a standard function signature, making it easy for the community to add new providers.
 
@@ -275,7 +275,7 @@ To add a new provider, implement the function and add it to the waterfall array.
 
 ---
 
-## 💳 Credit System
+## Credit System
 
 The community database uses a **credit economy** to prevent free-riding:
 
@@ -289,7 +289,7 @@ Users with insufficient credits see masked emails (`j***@company.com`). Credits 
 
 ---
 
-## 📋 Phased Build Order
+## Phased Build Order
 
 This project is designed to be built incrementally by AI IDEs. Each phase is self-contained.
 
@@ -307,8 +307,8 @@ This project is designed to be built incrementally by AI IDEs. Each phase is sel
 
 ---
 
-## 📄 License
+## License
 
-MIT — see [LICENSE](LICENSE).
+MIT -- see [LICENSE](LICENSE).
 
 Built for job seekers and founders who want to own their outreach infrastructure.

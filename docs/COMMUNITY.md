@@ -10,10 +10,10 @@ Pitch OS is **MIT licensed** and **community-driven**. The community database is
 
 ### How It Works
 
-1. **Search** — Query the community DB by company, role, or domain
-2. **Results are masked** — Emails appear as `j***@company.com`
-3. **Reveal** — Spend 1 credit to see the full email
-4. **Contribute** — Earn credits by contributing verified emails
+1. **Search** -- Query the community DB by company, role, or domain
+2. **Results are masked** -- Emails appear as `j***@company.com`
+3. **Reveal** -- Spend 1 credit to see the full email
+4. **Contribute** -- Earn credits by contributing verified emails
 
 ### Credit Economy
 
@@ -25,14 +25,14 @@ Pitch OS is **MIT licensed** and **community-driven**. The community database is
 
 ### Why Credits?
 
-The credit system prevents **free-riding** — users who only consume without contributing. It's not a paywall; it's a gentle nudge to give back to the community. If you verify emails during your workflow, contribute them and you'll never run out of credits.
+The credit system prevents **free-riding** -- users who only consume without contributing. It's not a paywall; it's a gentle nudge to give back to the community. If you verify emails during your workflow, contribute them and you'll never run out of credits.
 
 ### Making It Fully Open
 
 If you prefer no credit system, modify the reveal endpoint to skip the credit check:
 
 ```typescript
-// src/pages/api/community/reveal.ts — remove credit check
+// src/pages/api/community/reveal.ts -- remove credit check
 // Remove lines 12-24 (credit balance check)
 // Remove line 40-44 (credit deduction)
 // Just return the email directly
@@ -42,7 +42,7 @@ If you prefer no credit system, modify the reveal endpoint to skip the credit ch
 
 ## Adding a New Provider
 
-Pitch OS uses an **adapter pattern** — each provider implements a standard function signature. No core logic changes needed.
+Pitch OS uses an **adapter pattern** -- each provider implements a standard function signature. No core logic changes needed.
 
 ### Email Finder Adapter
 
@@ -179,11 +179,11 @@ async function sendViaYourProvider(params: {
 
 ### Coding Standards
 
-- **TypeScript** — strict mode, no `any` where possible
-- **React** — functional components with hooks
-- **API Routes** — Astro `APIRoute` pattern with `locals.env` and `locals.user`
-- **Styling** — Tailwind utility classes, dark theme CSS variables
-- **Database** — D1 with `dbGet`, `dbAll`, `dbRun` helpers
+- **TypeScript** -- strict mode, no `any` where possible
+- **React** -- functional components with hooks
+- **API Routes** -- Astro `APIRoute` pattern with `locals.env` and `locals.user`
+- **Styling** -- Tailwind utility classes, dark theme CSS variables
+- **Database** -- D1 with `dbGet`, `dbAll`, `dbRun` helpers
 
 ### What Makes a Good PR
 

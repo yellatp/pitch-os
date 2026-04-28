@@ -335,8 +335,8 @@ Get warmup status. Auto-creates a default config row if none exists.
   "readiness_score": 17,
   "is_ready": false,
   "schedule": [
-    { "range": "Days 1–3", "target": 5, "description": "Initial trust signals", "done": true },
-    { "range": "Days 4–7", "target": 10, "description": "Building engagement", "done": false },
+    { "range": "Days 1-3", "target": 5, "description": "Initial trust signals", "done": true },
+    { "range": "Days 4-7", "target": 10, "description": "Building engagement", "done": false },
     ...
   ]
 }
@@ -436,6 +436,6 @@ Generate an AI-powered postscript for an email.
 **Response:**
 ```json
 {
-  "ps": "P.S. I noticed Acme recently launched a new product — would love to hear your thoughts on it."
+  "ps": "P.S. I noticed Acme recently launched a new product -- would love to hear your thoughts on it."
 }
 ```
