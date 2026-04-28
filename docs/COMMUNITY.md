@@ -10,10 +10,10 @@ Pitch OS is **MIT licensed** and **community-driven**. The community database is
 
 ### How It Works
 
-1. **Search** -- Query the community DB by company, role, or domain
-2. **Results are masked** -- Emails appear as `j***@company.com`
-3. **Reveal** -- Spend 1 credit to see the full email
-4. **Contribute** -- Earn credits by contributing verified emails
+1. **Search.** Query the community DB by company, role, or domain.
+2. **Results are masked.** Emails appear as `j***@company.com`.
+3. **Reveal.** Spend 1 credit to see the full email.
+4. **Contribute.** Earn credits by contributing verified emails.
 
 ### Credit Economy
 
@@ -25,7 +25,7 @@ Pitch OS is **MIT licensed** and **community-driven**. The community database is
 
 ### Why Credits?
 
-The credit system prevents **free-riding** -- users who only consume without contributing. It's not a paywall; it's a gentle nudge to give back to the community. If you verify emails during your workflow, contribute them and you'll never run out of credits.
+The credit system prevents **free-riding** (users who only consume without contributing). It is not a paywall. It is a gentle nudge to give back to the community. If you verify emails during your workflow, contribute them and you will never run out of credits.
 
 ### Making It Fully Open
 
@@ -42,7 +42,7 @@ If you prefer no credit system, modify the reveal endpoint to skip the credit ch
 
 ## Adding a New Provider
 
-Pitch OS uses an **adapter pattern** -- each provider implements a standard function signature. No core logic changes needed.
+Pitch OS uses an **adapter pattern**. Each provider implements a standard function signature. No core logic changes needed.
 
 ### Email Finder Adapter
 
@@ -170,35 +170,35 @@ async function sendViaYourProvider(params: {
 
 ### Pull Request Process
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-addition`)
-3. Make your changes
-4. Run `pnpm type-check` and `pnpm build` to verify
-5. Commit with clear messages
-6. Open a PR against `main`
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature/amazing-addition`).
+3. Make your changes.
+4. Run `pnpm type-check` and `pnpm build` to verify.
+5. Commit with clear messages.
+6. Open a PR against `main`.
 
 ### Coding Standards
 
-- **TypeScript** -- strict mode, no `any` where possible
-- **React** -- functional components with hooks
-- **API Routes** -- Astro `APIRoute` pattern with `locals.env` and `locals.user`
-- **Styling** -- Tailwind utility classes, dark theme CSS variables
-- **Database** -- D1 with `dbGet`, `dbAll`, `dbRun` helpers
+- **TypeScript.** Strict mode, no `any` where possible.
+- **React.** Functional components with hooks.
+- **API Routes.** Astro `APIRoute` pattern with `locals.env` and `locals.user`.
+- **Styling.** Tailwind utility classes, dark theme CSS variables.
+- **Database.** D1 with `dbGet`, `dbAll`, `dbRun` helpers.
 
 ### What Makes a Good PR
 
-- Adds a new provider adapter (finder, verifier, or sender)
-- Fixes a bug with reproduction steps
-- Improves documentation
-- Does NOT change core architecture without discussion
+- Adds a new provider adapter (finder, verifier, or sender).
+- Fixes a bug with reproduction steps.
+- Improves documentation.
+- Does NOT change core architecture without discussion.
 
 ---
 
 ## Reporting Issues
 
 Open an issue with:
-- Description of the problem
-- Steps to reproduce
-- Expected vs actual behavior
-- Screenshots (if UI-related)
-- Environment (browser, OS, deployment type)
+- Description of the problem.
+- Steps to reproduce.
+- Expected vs actual behavior.
+- Screenshots (if UI-related).
+- Environment (browser, OS, deployment type).

@@ -10,7 +10,7 @@ All API routes are prefixed with `/api/` and require authentication (handled by 
 Redirects to Google OAuth consent screen.
 
 ### `GET /api/auth/callback?code=...&state=...`
-Handles Google OAuth callback. Exchanges code for tokens, creates/retrieves user, sets session cookie.
+Handles Google OAuth callback. Exchanges code for tokens, creates or retrieves user, sets session cookie.
 
 **Response:** Redirects to `/dashboard` (or `?next=` param).
 
@@ -436,6 +436,6 @@ Generate an AI-powered postscript for an email.
 **Response:**
 ```json
 {
-  "ps": "P.S. I noticed Acme recently launched a new product -- would love to hear your thoughts on it."
+  "ps": "P.S. I noticed Acme recently launched a new product. Would love to hear your thoughts on it."
 }
 ```

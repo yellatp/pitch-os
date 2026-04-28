@@ -1,65 +1,65 @@
 # Pitch OS
 
-> **BYOK (Bring Your Own Key) - Community-driven - MIT Licensed**
+> **BYOK (Bring Your Own Key). Community-driven. MIT Licensed.**
 
-Pitch OS is an open-source, all-in-one outreach platform for **job seekers** and **startup founders**. It combines email finding, verification, sending, warmup, and DNS setup into a single self-hosted application -- running entirely on Cloudflare's free tier.
+Pitch OS is an open-source, all-in-one outreach platform for **job seekers** and **startup founders**. It combines email finding, verification, sending, warmup, and DNS setup into a single self-hosted application that runs entirely on Cloudflare's free tier.
 
-Drop this repo into Cursor, Windsurf, or Claude Code and tell it to "implement Phase 1" -- the phased build order is designed so AI IDEs can work in focused chunks without getting lost.
+Drop this repo into Cursor, Windsurf, or Claude Code and tell it to "implement Phase 1." The phased build order is designed so AI IDEs can work in focused chunks without getting lost.
 
 ---
 
 ## Features
 
 ### Email Discovery
-- **Waterfall finder engine** -- queries Apollo, RocketReach, Hunter, Skrapp, Prospeo, GetProspect, ContactOut, Wiza, SignalHire, AeroLeads in cascade until an email is found
-- **Single lookup** -- find one email by name + company
-- **Bulk lookup** -- upload CSV, find up to 50 emails at once
-- **Domain search** -- Hunter-powered domain-wide email discovery
-- **Pattern fallback** -- generates email patterns from known formats when APIs fail
+- **Waterfall finder engine.** Queries Apollo, RocketReach, Hunter, Skrapp, Prospeo, GetProspect, ContactOut, Wiza, SignalHire, AeroLeads in cascade until an email is found.
+- **Single lookup.** Find one email by name and company.
+- **Bulk lookup.** Upload CSV, find up to 50 emails at once.
+- **Domain search.** Hunter-powered domain-wide email discovery.
+- **Pattern fallback.** Generates email patterns from known formats when APIs fail.
 
 ### Email Verification
-- **Waterfall verifier** -- checks across ZeroBounce, NeverBounce, MillionVerifier, DeBounce until a result is returned
-- **Status classification** -- valid, invalid, catch-all, unknown, spamtrap, abuse
-- **Confidence scoring** -- 0-10 score with `safe_to_send` flag
-- **Community contribution** -- verified emails can be contributed to the shared database
+- **Waterfall verifier.** Checks across ZeroBounce, NeverBounce, MillionVerifier, DeBounce until a result is returned.
+- **Status classification.** Valid, invalid, catch-all, unknown, spamtrap, abuse.
+- **Confidence scoring.** 0-10 score with `safe_to_send` flag.
+- **Community contribution.** Verified emails can be contributed to the shared database.
 
 ### Email Sending
-- **Multi-provider dispatch** -- Resend, Brevo, MailerSend, Postmark, Mailgun
-- **Smart routing** -- picks the best provider based on availability and rate limits
-- **Rate limiting** -- daily caps, domain frequency limits (max 3/day per domain), 90-180s random send delays
-- **Bounce rate auto-pause** -- any campaign hitting 3% bounce rate is hard-paused automatically
-- **Queue-based delivery** -- Cloudflare Cron-driven send queue processes emails every 60 seconds
+- **Multi-provider dispatch.** Resend, Brevo, MailerSend, Postmark, Mailgun.
+- **Smart routing.** Picks the best provider based on availability and rate limits.
+- **Rate limiting.** Daily caps, domain frequency limits (max 3/day per domain), 90-180s random send delays.
+- **Bounce rate auto-pause.** Any campaign hitting 3% bounce rate is hard-paused automatically.
+- **Queue-based delivery.** Cloudflare Cron-driven send queue processes emails every 60 seconds.
 
 ### Template Engine
-- **Spintax support** -- `{option1|option2|option3}` randomization for subject and body
-- **Variable substitution** -- `{{FirstName}}`, `{{Company}}`, etc.
-- **AI personalization** -- optional AI-powered postscript generation
-- **10 template categories** -- job_search, referral_request, mentorship_request, investor_pitch, partnership, product_demo, one_pager_share, recruiter_reach, community_invite, custom
-- **Starter templates** -- 15+ pre-written templates included
+- **Spintax support.** `{option1|option2|option3}` randomization for subject and body.
+- **Variable substitution.** `{{FirstName}}`, `{{Company}}`, etc.
+- **AI personalization.** Optional AI-powered postscript generation.
+- **10 template categories.** Job search, referral request, mentorship request, investor pitch, partnership, product demo, one-pager share, recruiter reach, community invite, custom.
+- **Starter templates.** 15+ pre-written templates included.
 
 ### Email Warmup
-- **Ramp schedule** -- Days 1-3 (5/day) -> 4-7 (10/day) -> 8-14 (20/day) -> 15-21 (40/day) -> 22-30 (70/day) -> 30+ (100/day)
-- **Readiness score** -- computed as `min(100, daysActive / 30 * 100)`
-- **Provider selection** -- Mails.ai, TrulyInbox, Instantly, Smartlead
-- **Visual progress** -- ramp schedule visualization with current stage highlighting
+- **Ramp schedule.** Days 1-3 (5/day) to 4-7 (10/day) to 8-14 (20/day) to 15-21 (40/day) to 22-30 (70/day) to 30+ (100/day).
+- **Readiness score.** Computed as `min(100, daysActive / 30 * 100)`.
+- **Provider selection.** Mails.ai, TrulyInbox, Instantly, Smartlead.
+- **Visual progress.** Ramp schedule visualization with current stage highlighting.
 
 ### DNS Wizard
-- **6-step guided setup** -- Domain -> Provider -> SPF -> DKIM -> DMARC -> Verify
-- **Provider-specific instructions** -- Resend, Brevo, MailerSend, Mailgun, Postmark
-- **Live DNS verification** -- checks SPF, DKIM (9 selectors), DMARC via Cloudflare DNS-over-HTTPS
-- **Burner domain warning** -- reminds users to never use their main domain
+- **6-step guided setup.** Domain, Provider, SPF, DKIM, DMARC, Verify.
+- **Provider-specific instructions.** Resend, Brevo, MailerSend, Mailgun, Postmark.
+- **Live DNS verification.** Checks SPF, DKIM (9 selectors), DMARC via Cloudflare DNS-over-HTTPS.
+- **Burner domain warning.** Reminds users to never use their main domain.
 
 ### Community Database
-- **Shared email repository** -- crowd-sourced verified emails
-- **Credit system** -- earn credits by contributing, spend credits to reveal full emails
-- **Role-based filtering** -- filter by HR, engineering, founder, sales, marketing, etc.
-- **Email masking** -- emails are masked (`j***@company.com`) until revealed
+- **Shared email repository.** Crowd-sourced verified emails.
+- **Credit system.** Earn credits by contributing, spend credits to reveal full emails.
+- **Role-based filtering.** Filter by HR, engineering, founder, sales, marketing, etc.
+- **Email masking.** Emails are masked (`j***@company.com`) until revealed.
 
 ### Security
-- **Google OAuth** -- sign in with your Google account
-- **JWT sessions** -- HMAC-SHA256 signed tokens, 7-day expiry
-- **AES-256-GCM encryption** -- API keys encrypted at rest in KV, derived from AUTH_SECRET + userId
-- **Encrypted API keys** -- keys are never stored in plaintext
+- **Google OAuth.** Sign in with your Google account.
+- **JWT sessions.** HMAC-SHA256 signed tokens, 7-day expiry.
+- **AES-256-GCM encryption.** API keys encrypted at rest in KV, derived from AUTH_SECRET + userId.
+- **Encrypted API keys.** Keys are never stored in plaintext.
 
 ---
 
@@ -162,7 +162,7 @@ pnpm db:migrate:local
 pnpm dev
 ```
 
-Open [http://localhost:4321](http://localhost:4321) -- sign in with Google.
+Open [http://localhost:4321](http://localhost:4321) and sign in with Google.
 
 ### 5. Deploy
 
@@ -309,6 +309,6 @@ This project is designed to be built incrementally by AI IDEs. Each phase is sel
 
 ## License
 
-MIT -- see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
 
 Built for job seekers and founders who want to own their outreach infrastructure.

@@ -59,14 +59,14 @@ pnpm db:migrate:prod
 
 ## Step 2: Google OAuth Setup
 
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project (or select existing)
-3. Navigate to **APIs & Services -> Credentials**
-4. Click **Create Credentials -> OAuth 2.0 Client ID**
-5. Application type: **Web application**
-6. Authorized JavaScript origins: `http://localhost:4321` (dev), `https://your-domain.com` (prod)
-7. Authorized redirect URIs: `http://localhost:4321/api/auth/callback` (dev), `https://your-domain.com/api/auth/callback` (prod)
-8. Copy the **Client ID** and **Client Secret**
+1. Go to [Google Cloud Console](https://console.cloud.google.com/).
+2. Create a new project (or select existing).
+3. Navigate to **APIs & Services > Credentials**.
+4. Click **Create Credentials > OAuth 2.0 Client ID**.
+5. Application type: **Web application**.
+6. Authorized JavaScript origins: `http://localhost:4321` (dev), `https://your-domain.com` (prod).
+7. Authorized redirect URIs: `http://localhost:4321/api/auth/callback` (dev), `https://your-domain.com/api/auth/callback` (prod).
+8. Copy the **Client ID** and **Client Secret**.
 
 ---
 
@@ -122,9 +122,9 @@ This runs `astro build` then `wrangler pages deploy dist`.
 
 The send queue processor runs via Cloudflare Cron Triggers. In your Cloudflare Dashboard:
 
-1. Go to **Workers & Pages -> pitch-os -> Settings**
-2. Find **Triggers** section
-3. Add a Cron Trigger: `*/1 * * * *` (every minute)
+1. Go to **Workers & Pages > pitch-os > Settings**.
+2. Find **Triggers** section.
+3. Add a Cron Trigger: `*/1 * * * *` (every minute).
 
 Alternatively, deploy via `wrangler.toml`:
 
